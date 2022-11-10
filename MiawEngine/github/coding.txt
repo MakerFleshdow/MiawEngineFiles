@@ -1,0 +1,10 @@
+{isforpremium = f, ispatched = t, joketime = f, itsrainingtacos = f}
+
+
+
+{ //delete all this
+comand: isforpremium = t/f
+comand: ispatched = t/f
+comand: joketime = t/f
+comand: itsrainingtacos = t/f
+}
