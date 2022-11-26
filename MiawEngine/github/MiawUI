@@ -1,0 +1,174 @@
+local Players = game:GetService("Players")
+
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local InfiniteJumpEnabled = true
+local Window = Rayfield:CreateWindow({
+	Name = "Miaw Advanced UI",
+	LoadingTitle = "Loading Window",
+	LoadingSubtitle = "By Miawi",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = nil, -- Create a custom folder for your hub/game
+		FileName = "MiawHUB"
+	},
+        Discord = {
+        	Enabled = false,
+        	Invite = "sirius", -- The Discord invite code, do not include discord.gg/
+        	RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        },
+	KeySystem = true, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "Miaw Hub",
+		Subtitle = "Key System",
+		Note = "Im not bad key: what",
+		FileName = "MiawKey",
+		SaveKey = true,
+		GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = "what"
+	}
+})
+
+local Tab = Window:CreateTab("Main Player", 4483362458) -- Title, Image
+local Tab1 = Window:CreateTab("Doors", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Section Example")
+local Section1 = Tab1:CreateSection("DOORS 👁")
+
+
+local Button = Tab1:CreateButton({
+	Name = "No jumpscare",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+        game:GetService("ReplicatedStorage").Bricks.Jumpscare:Destroy()
+
+        
+	end,
+})
+
+local Button = Tab1:CreateButton({
+	Name = "No Screech",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+        if child.Name == "Screech" then
+            child:Destroy()
+        end
+        
+	end,
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Button = Tab:CreateButton({
+	Name = "Reset",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0
+        
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Summon Head light",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+        local pcl = Instance.new("SpotLight")
+pcl.Brightness = 2
+pcl.Face = Enum.NormalId.Front
+pcl.Range = 90
+pcl.Parent = game.Players.LocalPlayer.Character.Head
+pcl.Enabled = true
+        
+	end,
+})
+
+
+local Button = Tab:CreateButton({
+	Name = "Infinite Jump",
+	Callback = function()
+		-- The function that takes place when the button is pressed
+
+        game:GetService("UserInputService").JumpRequest:connect(function()
+            if InfiniteJumpEnabled == true then
+                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+            end
+        end)
+	end,
+})
+
+
+
+
+
+local Slider = Tab:CreateSlider({
+	Name = "Speed",
+	Range = {0, 700},
+	Increment = 5,
+	Suffix = "Character Speed",
+	CurrentValue = 16,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(speed)
+		-- The function that takes place when the slider changes
+    		-- The variable (Value) is a number which correlates to the value the slider is currently at
+           game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+	end,
+})
+local Slider1 = Tab:CreateSlider({
+	Name = "Jump Force",
+	Range = {0, 700},
+	Increment = 5,
+	Suffix = "Character Jump",
+	CurrentValue = 16,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(jump)
+		-- The function that takes place when the slider changes
+    		-- The variable (Value) is a number which correlates to the value the slider is currently at
+           game.Players.LocalPlayer.Character.Humanoid.JumpPower = jump
+	end,
+})
+
+local Slider1 = Tab:CreateSlider({
+	Name = "Health",
+	Range = {0, 1000},
+	Increment = 5,
+	Suffix = "Character Health",
+	CurrentValue = 100,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(health)
+		-- The function that takes place when the slider changes
+    		-- The variable (Value) is a number which correlates to the value the slider is currently at
+           game.Players.LocalPlayer.Character.Humanoid.Health = health
+           game.StarterPlayers.CharacterJumpHeight = 0
+	end,
+})
+
+
+
+Rayfield:LoadConfiguration()    
